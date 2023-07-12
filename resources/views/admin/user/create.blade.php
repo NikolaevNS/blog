@@ -45,14 +45,15 @@
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label>Пароль пользователя</label>
-                        <input type="password" class="form-control" name="password" placeholder="Введите пароль">
-                        @error('password')
-                        <div class="text-danger">
-                            {{ $message }}
-                        </div>
-                        @enderror
+                    <div class="form-group col-6">
+                        <label>Выберите роль</label>
+                        <select class="form-control" name="role">
+                            @foreach($roles as $id => $role)
+                                <option value="{{ $id }}"
+                                    {{ $id == old('role') ? ' selected' : '' }}
+                                >{{ $role }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Добавить">
                 </form>
