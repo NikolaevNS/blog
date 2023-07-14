@@ -26,9 +26,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('main.index') }}">Блог <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
+                    @auth()
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <input type="submit" value="Выйти" class="nav-link border-0 bg-transparent">
+                            </form>
+                        </li>
+                    @endauth
+                    @guest()
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Войти <span class="sr-only">(current)</span></a>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>
